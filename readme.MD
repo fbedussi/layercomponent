@@ -3,7 +3,11 @@
 A component to manage layers in websites
 
 ##Usage
-Create a new object form the Layer prototype
+Import the Layer module:
+````html
+<script type="text/javascript" src="layer.js"></script>
+````
+Create a new object form the Layer prototype:
 ````javascipt
 var searchLayer = Object.create(Layer);
 ````

@@ -1,6 +1,5 @@
 (function() {
     var Layer = {
-        timer: 500,
         isOpen: false,
         layerOpened: {},
         setLayerOpened: function(layerObj) {
@@ -41,6 +40,7 @@
             this.closer = options.closer;
             this.layerEl = document.querySelector(this.selector);
             this.direction = options.direction || 'toRight';
+            this.timer = parseFloat( window.getComputedStyle(document.querySelector( this.selector )).transitionDuration) * 1000;
             [].forEach.call(document.querySelectorAll(this.opener), (el) => {
                 el.addEventListener('click', () => {
                     if (!this.isOpen) {
