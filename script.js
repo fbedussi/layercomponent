@@ -40,20 +40,19 @@ var Layer = {
         this.closer = options.closer;
         this.layerEl = document.querySelector(this.selector);
         this.direction = options.direction || 'toRight';
-        var layer = this;
-        [].forEach.call(document.querySelectorAll(this.opener),function(el) {
-            el.addEventListener('click', function(e) {
-                if (!layer.isOpen) {
-                    layer.open();
+        [].forEach.call(document.querySelectorAll(this.opener), (el) => {
+            el.addEventListener('click', () => {
+                if (!this.isOpen) {
+                    this.open();
                 } else {
-                    layer.close();
+                    this.close();
                 }
               });
             });
-        [].forEach.call(document.querySelectorAll(this.closer), function(el) {
-            el.addEventListener('click', function(e) {
-                if (layer.isOpen) {
-                  layer.close();
+        [].forEach.call(document.querySelectorAll(this.closer), (el) => {
+            el.addEventListener('click', (e) => {
+                if (this.isOpen) {
+                  this.close();
                 }
             });
         });
