@@ -28,21 +28,21 @@ class Layer {
         });
     }
     
-    static set layerOpened(layerObj) {
-      layerOpened = layerObj;  
-    }
-    
-    static get layerOpened() {
-      return layerOpened; 
-    }
-    
-    //set layerOpened(layerObj) {
-    //  Layer.layerOpened = layerObj;  
+    //static set layerOpened(layerObj) {
+    //    Layer.layerOpened = layerObj;  
     //}
     //
-    //get layerOpened() {
-    //  return Layer.layerOpened; 
+    //static get layerOpened() {
+    //    return Layer.layerOpened; 
     //}
+    
+    set layerOpened(layerObj) {
+      Layer.layerOpened = layerObj;  
+    }
+    
+    get layerOpened() {
+      return Layer.layerOpened; 
+    }
     
     //static getLayerOpened() {
     //    return this.layerOpened;
@@ -66,17 +66,17 @@ class Layer {
                     break;
             }
             this.isOpen = true;
-            Layer.layerOpened = this;
-            //this.layerOpened = this;
+            //Layer.layerOpened = this;
+            this.layerOpened = this;
             //Layer.setLayerOpened(this);
         }
         var wait = 0;
         //if (Layer.getLayerOpened().close) {
         //    Layer.getLayerOpened().close();
-        if (Layer.layerOpened.close) {
-            Layer.layerOpened.close();
-        //if (this.layerOpened.close) {
-        //    this.layerOpened.close();
+        //if (Layer.layerOpened.close) {
+        //    Layer.layerOpened.close();
+        if (this.layerOpened.close) {
+            this.layerOpened.close();
             wait = this.timer;
         }
         
@@ -84,11 +84,11 @@ class Layer {
     }
     
     close() {
-      Layer.layerOpened = {};
-      //this.layerOpened = {};
+      //Layer.layerOpened = {};
+      this.layerOpened = {};
       //Layer.setLayerOpened({});
       this.isOpen = false;
       this.layerEl.style = '';
     }
 }
-//Layer.layerOpened = {};
+Layer.layerOpened = {};
