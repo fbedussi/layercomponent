@@ -1,12 +1,10 @@
-var menuLayer = Object.create(Layer);
-menuLayer.init({selector: '#menu', opener: '#menuButton', closer: '#menuClose'});
-menuLayer.open = function() {
-    console.log('agument');
-    Layer.open.call(this);
-}
+var menuLayer = new Layer({selector: '#menu', opener: '#menuButton', closer: '#menuClose'});
 
-var searchLayer = Object.create(Layer);
-searchLayer.init({selector: '#search', opener: '#searchButton', closer: '#searchClose', direction: 'toBottom'});
+//menuLayer.open = function() {
+//    console.log('agument');
+//    Layer.open.call(this);
+//}
 
-var cartLayer = Object.create(Layer);
-cartLayer.init({selector: '#cart', opener: '#cartButton', closer: '#cartClose', direction: 'toLeft'});
+var searchLayer = new Layer({selector: '#search', opener: '#searchButton', closer: '#searchClose', direction: 'toBottom'});
+
+var cartLayer = new Layer({selector: '#cart', opener: '#cartButton', closer: '#cartClose', direction: 'toLeft'});
