@@ -1,9 +1,15 @@
-var menuLayer = new Layer({selector: '#menu', opener: '#menuButton', closer: '#menuClose'});
+class MenuLayer extends Layer {
+    constructor(options) {
+        super(options);
+    }
+    
+    open() {
+        console.log('agument');
+        super.open();
+    }
+};
 
-//menuLayer.open = function() {
-//    console.log('agument');
-//    Layer.open.call(this);
-//}
+var menuLayer = new MenuLayer({selector: '#menu', opener: '#menuButton', closer: '#menuClose'});
 
 var searchLayer = new Layer({selector: '#search', opener: '#searchButton', closer: '#searchClose', direction: 'toBottom'});
 
