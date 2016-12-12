@@ -2,15 +2,15 @@ var Layer = {
     isOpen: false,
     _layerOpen: {},
     
-    setLayerOpen: function(layerObj) {
+    _setLayerOpen: function(layerObj) {
         var proto = this;
         while (!proto.hasOwnProperty('_layerOpen')) {
             proto = Object.getPrototypeOf(proto);
         }
-        proto._layerOpen = layerObj;  
+        proto._layerOpen = layerObj;
     },
     
-    getLayerOpen: function() {
+    _getLayerOpen: function() {
         return this._layerOpen;
     },
     
@@ -28,23 +28,27 @@ var Layer = {
                     break;
             }
             this.isOpen = true;
-            this.setLayerOpen(this);
+            this._setLayerOpen(this);
         }
 
         var wait = 0;
 
-        if (this.getLayerOpen().close) {
-            this.getLayerOpen().close();
+        if (this._getLayerOpen().close) {
+            this._getLayerOpen().close();
             wait = this.timer;
         }
         
         setTimeout(executeOpen.bind(this), wait);
+        
+        return this;
     },
     
     close: function() {
-      this.setLayerOpen({});
-      this.isOpen = false;
-      this.layerEl.style = '';
+        this._setLayerOpen({});
+        this.isOpen = false;
+        this.layerEl.style = '';
+        
+        return this;
     },
     
     init: function(options) {
