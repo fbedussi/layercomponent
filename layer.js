@@ -1,7 +1,7 @@
-(function () {
+(function(nameSpace) {
     var layerOpen = {};
     
-    return window.Layer = {
+    var Layer = {
         isOpen: false,
         
         setLayerOpen: function(layerObj) {
@@ -67,6 +67,12 @@
                     }
                 });
             });
+            
+            return this;
         }
-    }    
-})()
+    }
+    
+    nameSpace.createLayer = function(options) {
+        return Object.create(Layer).init(options);
+    };
+})(window);
