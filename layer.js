@@ -1,10 +1,17 @@
-(function() {
-    var Layer = {
+(function () {
+    var layerOpen = {};
+    
+    return window.Layer = {
         isOpen: false,
-        layerOpened: {},
-        setLayerOpened: function(layerObj) {
-          Object.getPrototypeOf(this).layerOpened = layerObj;  
+        
+        setLayerOpen: function(layerObj) {
+          layerOpen = layerObj;  
         },
+        
+        getLayerOpen: function() {
+          return layerOpen;  
+        },
+        
         open: function() {
             function executeOpen() {
                 switch (this.direction) {
@@ -19,21 +26,23 @@
                         break;
                 }
                 this.isOpen = true;
-                this.setLayerOpened(this);
+                this.setLayerOpen(this);
             }
             var wait = 0;
-            if (this.layerOpened.close) {
-                this.layerOpened.close();
+            if (this.getLayerOpen().close) {
+                this.getLayerOpen().close();
                 wait = this.timer;
             }
             
             setTimeout(executeOpen.bind(this), wait);
         },
+        
         close: function() {
-          this.setLayerOpened({});
+          this.setLayerOpen({});
           this.isOpen = false;
           this.layerEl.style = '';
         },
+        
         init: function(options) {
             this.selector = options.selector;
             this.opener = options.opener;
@@ -41,6 +50,7 @@
             this.layerEl = document.querySelector(this.selector);
             this.direction = options.direction || 'toRight';
             this.timer = parseFloat( window.getComputedStyle(document.querySelector( this.selector )).transitionDuration) * 1000;
+        
             [].forEach.call(document.querySelectorAll(this.opener), (el) => {
                 el.addEventListener('click', () => {
                     if (!this.isOpen) {
@@ -58,7 +68,5 @@
                 });
             });
         }
-    }
-    
-    return window.Layer = Layer;
+    }    
 })()
